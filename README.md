@@ -1,59 +1,69 @@
-# MyApp
+# IconForger
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.0.
+## About The Project
 
-## Development server
+IconForger is a personal learning project aimed at building a web-based icon editor and management tool. The application allows users to create, customize, and organize icons for various projects and design needs.
 
-To start a local development server, run:
+This project is being developed sporadically in my free time as a way to explore and practice modern web development technologies and techniques. It serves as both a practical tool and a playground for implementing new skills.
+
+## Technologies
+
+IconForger leverages the following technologies:
+
+- **Frontend:**
+
+  - Angular
+  - TypeScript
+  - RxJS
+  - Angular Material
+  - SVG manipulation libraries
+  - SCSS/CSS
+
+- **State Management:**
+
+  - NgRx
+
+- **Backend Plans:**
+
+  - Node.js
+  - Express
+  - MongoDB (for storing user designs)
+  - Firebase (authentication)
+
+- **Build Tools:**
+  - Angular CLI
+  - Webpack
+
+## Features (Planned)
+
+- Interactive icon generator using AI
+- Library for organizing and storing created icons
+- Export option
+- User authentication and cloud storage of designs
+- Template system for quick icon creation
+- Responsive design for desktop and tablet use
+- Free trial, and a paywall
+
+## Development Status
+
+This project is currently in early development. Features are being implemented incrementally as time permits. The codebase may contain experimental approaches and is subject to significant refactoring as the project evolves.
+
+## Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/yourusername/iconforger.git
+
+# Navigate to project directory
+cd iconforger
+
+# Install dependencies
+npm install
+
+# Start the development server
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Contributing
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+As this is primarily a personal learning project, I'm not actively seeking contributions. However, feedback, suggestions, and discussions about the project are always welcome!
