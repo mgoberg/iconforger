@@ -1,1 +1,77 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  --background-dark: #121212;
+  --surface-dark: #1e1e1e;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --neon-primary: #00ffea;
+  --neon-secondary: #ff00ff;
+  --accent-color: #5c33ff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Outfit", sans-serif;
+  background-color: var(--background-dark);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+.dark-theme {
+  background-color: var(--background-dark);
+  color: var(--text-primary);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.neon-text {
+  color: var(--neon-primary);
+  text-shadow: 0 0 10px var(--neon-primary), 0 0 20px var(--neon-primary);
+}
+
+.neon-border {
+  border: 2px solid var(--neon-primary);
+  box-shadow: 0 0 10px var(--neon-primary);
+}
+
+.btn {
+  background: transparent;
+  border: 2px solid var(--neon-primary);
+  color: var(--neon-primary);
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn:hover {
+  background-color: var(--neon-primary);
+  color: var(--background-dark);
+  box-shadow: 0 0 15px var(--neon-primary);
+}
+
+.gradient-text {
+  background: linear-gradient(
+    90deg,
+    var(--neon-primary),
+    var(--neon-secondary)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
