@@ -245,3 +245,209 @@ footer {
     height: 250px;
   }
 }
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Login Modal */
+.login-modal {
+  background-color: var(--surface-dark);
+  border-radius: 15px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 0 20px rgba(0, 255, 234, 0.3);
+  overflow: hidden;
+  animation: scaleIn 0.3s ease-out;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header h3 {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.2s;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.close-button:hover {
+  color: var(--neon-primary);
+}
+
+.modal-body {
+  padding: 25px;
+}
+
+.modal-body p {
+  color: var(--text-secondary);
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* Login Buttons */
+.login-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.login-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.google-btn {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.google-btn:hover {
+  background-color: #f1f1f1;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.github-btn {
+  background-color: #24292e;
+  color: #ffffff;
+}
+
+.github-btn:hover {
+  background-color: #2f363d;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Divider */
+.login-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 25px 0;
+  color: var(--text-secondary);
+}
+
+.login-divider::before,
+.login-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.login-divider span {
+  padding: 0 10px;
+}
+
+/* Form */
+.login-form {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.2);
+  color: var(--text-primary);
+  font-size: 16px;
+  transition: all 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--neon-primary);
+  box-shadow: 0 0 5px var(--neon-primary);
+}
+
+.form-footer {
+  margin-top: 25px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.sign-up-text {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.sign-up-text a {
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

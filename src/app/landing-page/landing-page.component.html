@@ -4,13 +4,13 @@
     <div class="container">
       <nav class="navbar">
         <div class="logo">
-          <span class="gradient-text">IconForge</span>
+          <span class="gradient-text">IconForger</span>
         </div>
         <div class="nav-links">
           <a href="#features">Features</a>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
-          <button class="btn">Get Started</button>
+          <button class="btn" (click)="toggleLoginModal()">Get Started</button>
         </div>
       </nav>
     </div>
@@ -20,14 +20,14 @@
   <section class="hero">
     <div class="container">
       <div class="hero-content">
-        <h1><span class="gradient-text">IconForge</span></h1>
+        <h1><span class="gradient-text">IconForger</span></h1>
         <h2>Create Beautiful Icons with Ease</h2>
         <p>
           A powerful, intuitive tool for designing and customizing icons for
           your next project
         </p>
         <div class="cta-buttons">
-          <button class="btn">Try Now</button>
+          <button class="btn" (click)="toggleLoginModal()">Try Now</button>
           <button class="btn btn-outline">Learn More</button>
         </div>
       </div>
@@ -66,7 +66,7 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-logo">
-          <span class="gradient-text">IconForge</span>
+          <span class="gradient-text">IconForger</span>
         </div>
         <div class="footer-links">
           <a href="#privacy">Privacy</a>
@@ -74,9 +74,110 @@
           <a href="#contact">Contact</a>
         </div>
         <div class="copyright">
-          <p>&copy; 2023 IconForge. All rights reserved.</p>
+          <p>&copy; 2023 IconForger. All rights reserved.</p>
         </div>
       </div>
     </div>
   </footer>
+
+  <!-- Login Modal -->
+  <div
+    class="modal-overlay"
+    *ngIf="showLoginModal"
+    (click)="toggleLoginModal()"
+  >
+    <div class="login-modal neon-border" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3 class="gradient-text">Welcome to IconForger</h3>
+        <button class="close-button" (click)="toggleLoginModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <p>Sign in to start creating amazing icons</p>
+
+        <!-- Login form now appears first -->
+        <form class="login-form">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              class="form-input"
+              placeholder="Enter your email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              class="form-input"
+              placeholder="Enter your password"
+            />
+          </div>
+          <div class="form-footer">
+            <button type="submit" class="btn full-width">Sign In</button>
+          </div>
+        </form>
+
+        <div class="login-divider">
+          <span>or</span>
+        </div>
+
+        <!-- Social login options now appear second -->
+        <div class="login-buttons">
+          <button
+            class="login-btn google-btn"
+            (click)="loginWithProvider('Google')"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
+            >
+              <path
+                fill="#4285F4"
+                d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 7.8 0 0 0 2.38-5.88c0-.57-.05-.66-.15-1.18Z"
+              />
+              <path
+                fill="#34A853"
+                d="M8.98 17c2.16 0 3.97-.72 5.3-1.94l-2.6-2a4.8 4.8 0 0 1-7.18-2.54H1.83v2.07A8 8 0 0 0 8.98 17Z"
+              />
+              <path
+                fill="#FBBC05"
+                d="M4.5 10.52a4.8 4.8 0 0 1 0-3.04V5.41H1.83a8 8 0 0 0 0 7.18l2.67-2.07Z"
+              />
+              <path
+                fill="#EA4335"
+                d="M8.98 4.18c1.17 0 2.23.4 3.06 1.2l2.3-2.3A8 8 0 0 0 1.83 5.4L4.5 7.49a4.8 4.8 0 0 1 4.48-3.3Z"
+              />
+            </svg>
+            Continue with Google
+          </button>
+
+          <button
+            class="login-btn github-btn"
+            (click)="loginWithProvider('GitHub')"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="M12 0a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.2-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.1-.4-.6-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.6.2 2.9.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.9 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 0Z"
+              />
+            </svg>
+            Continue with GitHub
+          </button>
+        </div>
+
+        <p class="sign-up-text">
+          Don't have an account? <a href="#" class="gradient-text">Sign up</a>
+        </p>
+      </div>
+    </div>
+  </div>
 </div>

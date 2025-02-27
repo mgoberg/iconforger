@@ -1,0 +1,345 @@
+<div class="dashboard-container">
+  <!-- Header -->
+  <header class="dashboard-header">
+    <div class="container header-content">
+      <div class="logo">
+        <span class="gradient-text">IconForger</span>
+      </div>
+
+      <div class="user-menu">
+        <div class="notifications">
+          <button class="icon-button">
+            <i class="notification-icon">🔔</i>
+          </button>
+        </div>
+
+        <div class="user-profile">
+          <img [src]="user.avatar" alt="User Avatar" class="avatar" />
+          <span class="user-name">{{ user.name }}</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="dashboard-main">
+    <div class="container dashboard-layout">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <nav class="sidebar-nav">
+          <ul class="nav-list">
+            <li
+              class="nav-item"
+              [class.active]="activeTab === 'editor'"
+              (click)="setActiveTab('editor')"
+            >
+              <i class="nav-icon">🎨</i>
+              <span>Icon Editor</span>
+            </li>
+            <li
+              class="nav-item"
+              [class.active]="activeTab === 'library'"
+              (click)="setActiveTab('library')"
+            >
+              <i class="nav-icon">📚</i>
+              <span>My Library</span>
+            </li>
+            <li
+              class="nav-item"
+              [class.active]="activeTab === 'templates'"
+              (click)="setActiveTab('templates')"
+            >
+              <i class="nav-icon">📝</i>
+              <span>Templates</span>
+            </li>
+            <li
+              class="nav-item"
+              [class.active]="activeTab === 'settings'"
+              (click)="setActiveTab('settings')"
+            >
+              <i class="nav-icon">⚙️</i>
+              <span>Settings</span>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Content Area -->
+      <section class="content-area">
+        <!-- Icon Editor Tab -->
+        <div class="tab-content" *ngIf="activeTab === 'editor'">
+          <div class="editor-layout">
+            <!-- Preview Panel -->
+            <div class="preview-panel">
+              <div class="preview-container neon-border">
+                <div
+                  class="icon-preview"
+                  [style.backgroundColor]="iconConfig.backgroundColor"
+                  [style.borderRadius]="
+                    iconConfig.shape === 'circle'
+                      ? '50%'
+                      : iconConfig.borderRadius + 'px'
+                  "
+                >
+                  <div
+                    class="icon-content"
+                    [style.color]="iconConfig.foregroundColor"
+                  >
+                    <!-- Icon placeholder - in production this would be the actual SVG/icon -->
+                    <span class="icon-placeholder">
+                      {{
+                        {
+                          rocket: "🚀",
+                          star: "⭐",
+                          heart: "❤️",
+                          bell: "🔔",
+                          shield: "🛡️",
+                          home: "🏠",
+                          settings: "⚙️",
+                          user: "👤",
+                          chat: "💬",
+                          document: "📄"
+                        }[iconConfig.icon]
+                      }}
+                    </span>
+                  </div>
+                </div>
+                <div class="preview-actions">
+                  <button class="btn" (click)="generateIcon()">Generate</button>
+                  <div class="export-dropdown">
+                    <button class="btn btn-outline">Export</button>
+                    <div class="export-options">
+                      <div class="export-option" (click)="exportIcon('png')">
+                        PNG
+                      </div>
+                      <div class="export-option" (click)="exportIcon('svg')">
+                        SVG
+                      </div>
+                      <div class="export-option" (click)="exportIcon('ico')">
+                        ICO
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Controls Panel -->
+            <div class="controls-panel">
+              <div class="panel-section">
+                <h3 class="section-title">Basic Settings</h3>
+
+                <div class="form-group">
+                  <label for="icon-name">Icon Name</label>
+                  <input
+                    type="text"
+                    id="icon-name"
+                    class="form-input"
+                    [(ngModel)]="iconConfig.name"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="icon-size">Size</label>
+                  <select
+                    id="icon-size"
+                    class="form-select"
+                    [(ngModel)]="iconConfig.size"
+                  >
+                    <option value="16">16px</option>
+                    <option value="32">32px</option>
+                    <option value="64">64px</option>
+                    <option value="128">128px</option>
+                    <option value="256">256px</option>
+                    <option value="512">512px</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="icon-shape">Shape</label>
+                  <select
+                    id="icon-shape"
+                    class="form-select"
+                    [(ngModel)]="iconConfig.shape"
+                  >
+                    <option *ngFor="let shape of shapes" [value]="shape">
+                      {{ shape | titlecase }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="panel-section">
+                <h3 class="section-title">Style</h3>
+
+                <div class="form-group">
+                  <label for="bg-color">Background Color</label>
+                  <div class="color-picker">
+                    <input
+                      type="color"
+                      id="bg-color"
+                      [(ngModel)]="iconConfig.backgroundColor"
+                    />
+                    <input
+                      type="text"
+                      class="form-input"
+                      [(ngModel)]="iconConfig.backgroundColor"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="fg-color">Icon Color</label>
+                  <div class="color-picker">
+                    <input
+                      type="color"
+                      id="fg-color"
+                      [(ngModel)]="iconConfig.foregroundColor"
+                    />
+                    <input
+                      type="text"
+                      class="form-input"
+                      [(ngModel)]="iconConfig.foregroundColor"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group" *ngIf="iconConfig.shape !== 'circle'">
+                  <label for="border-radius">Border Radius</label>
+                  <input
+                    type="range"
+                    id="border-radius"
+                    min="0"
+                    max="50"
+                    [(ngModel)]="iconConfig.borderRadius"
+                  />
+                  <span class="range-value"
+                    >{{ iconConfig.borderRadius }}px</span
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label for="padding">Padding</label>
+                  <input
+                    type="range"
+                    id="padding"
+                    min="0"
+                    max="50"
+                    [(ngModel)]="iconConfig.padding"
+                  />
+                  <span class="range-value">{{ iconConfig.padding }}px</span>
+                </div>
+              </div>
+
+              <div class="panel-section">
+                <h3 class="section-title">Icon</h3>
+
+                <div class="form-group">
+                  <label for="icon-select">Select Icon</label>
+                  <select
+                    id="icon-select"
+                    class="form-select"
+                    [(ngModel)]="iconConfig.icon"
+                  >
+                    <option *ngFor="let icon of icons" [value]="icon">
+                      {{ icon | titlecase }}
+                    </option>
+                  </select>
+                </div>
+
+                <div class="icon-grid">
+                  <div
+                    *ngFor="let icon of icons"
+                    class="icon-option"
+                    [class.selected]="iconConfig.icon === icon"
+                    (click)="iconConfig.icon = icon"
+                  >
+                    <span class="icon-preview-small">
+                      {{
+                        {
+                          rocket: "🚀",
+                          star: "⭐",
+                          heart: "❤️",
+                          bell: "🔔",
+                          shield: "🛡️",
+                          home: "🏠",
+                          settings: "⚙️",
+                          user: "👤",
+                          chat: "💬",
+                          document: "📄"
+                        }[icon]
+                      }}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="form-group checkbox-group">
+                  <input
+                    type="checkbox"
+                    id="shadow"
+                    [(ngModel)]="iconConfig.shadow"
+                  />
+                  <label for="shadow">Add Shadow</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Library Tab -->
+        <div class="tab-content" *ngIf="activeTab === 'library'">
+          <h2 class="page-title">My Icons</h2>
+
+          <div class="library-actions">
+            <input
+              type="text"
+              class="form-input search-input"
+              placeholder="Search icons..."
+            />
+            <div class="sort-filter">
+              <select class="form-select">
+                <option>Recently Created</option>
+                <option>Oldest First</option>
+                <option>Alphabetical</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="icons-grid">
+            <div *ngFor="let icon of recentIcons" class="icon-card neon-border">
+              <div class="icon-card-preview">
+                <img
+                  [src]="icon.thumbnail"
+                  alt="Icon Thumbnail"
+                  class="icon-thumbnail"
+                />
+              </div>
+              <div class="icon-card-info">
+                <h4 class="icon-card-title">{{ icon.name }}</h4>
+                <p class="icon-card-date">{{ icon.date }}</p>
+              </div>
+              <div class="icon-card-actions">
+                <button class="icon-button"><i>✏️</i></button>
+                <button class="icon-button"><i>⬇️</i></button>
+                <button class="icon-button"><i>🗑️</i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Other tabs would be implemented similarly -->
+        <div class="tab-content" *ngIf="activeTab === 'templates'">
+          <h2 class="page-title">Templates</h2>
+          <p class="placeholder-content">Templates will be available here.</p>
+        </div>
+
+        <div class="tab-content" *ngIf="activeTab === 'settings'">
+          <h2 class="page-title">Settings</h2>
+          <p class="placeholder-content">
+            Application settings will be available here.
+          </p>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
